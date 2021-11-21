@@ -8,7 +8,7 @@ exports.run = {
 		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://www.instagram.com/p/CK0tLXyAzEI`)
 		if (!args[0].match(/(https:\/\/www.instagram.com)/gi)) return m.reply(_func.status.invalid)
 		m.reply(_func.status.getdata)
-		let json = await (await fetch(global.API('neoxr', '/api/ig', { url: args[0] }, 'apikey'))).json()
+		let json = await (await fetch(global.API('neoxr', '/api/ig', { url: args[0] }, 'GWF8vOVKis'))).json()
 		if (!json.status) return m.reply(_func.status.fail)
 		for(let i = 0; i < json.data.length; i++) {
 			if(json.data[i].type == 'mp4') {
