@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/neoxr/neoxr-bot#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "^3.5.2",
+    "@adiwajshing/baileys": "^3.5.3",
     "api2pdf": "^2.0.0",
     "awesome-phonenumber": "^2.58.0",
     "axios": "^0.21.3",
