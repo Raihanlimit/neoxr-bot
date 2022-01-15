@@ -1,27 +1,18 @@
-let { Presence } = require('@adiwajshing/baileys')
-let fetch = require('node-fetch')
 exports.run = {
-	usage: ['tiktok', 'tikwm', 'tikmp3'],
-	async: async (m, { conn, args, _func, isPrefix, command }) => {
+	usage: ['tiktok', 'tikmp3', 'tikwm'],
+	async: async (m, { client, args, isPrefix, command }) => {
 	try {
-		await conn.updatePresence(m.chat, Presence.composing)
-		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://vt.tiktok.com/ZSJTTSNrS`)
-		m.reply(_func.status.getdata)
-		let json = await (await fetch(global.API('neoxr', '/download/tiktok', { url: args[0] }, 'apikey'))).json()
-		if (!json.status) return m.reply(_func.status.fail)
-		if (command == 'tiktok') {
-			await conn.updatePresence(m.chat, Presence.composing)
-			return conn.sendVideo(m.chat, json.data.video, null, m)
-		} else if (command == 'tikwm') {
-			await conn.updatePresence(m.chat, Presence.composing)
-			return conn.sendVideo(m.chat, json.data.videoWM, null, m)
-		} else if (command == 'tikmp3') {
-			await conn.updatePresence(m.chat, Presence.composing)
-			return conn.sendAudio(m.chat, json.data.audio, m)
-		}
+		if (!args || !args[0]) return client.reply(m.chat, Func.example(isPrefix, command, 'https://vt.tiktok.com/ZSe22y3dA'), m)
+		client.reply(m.chat, global.status.getdata, m)
+		let json = await Api.tiktok(args[0])
+		if (!json.status) return client.reply(m.chat, global.status.fail, m)
+		if (command == 'tiktok') return client.sendVideo(m.chat, json.data.video, '', m)
+		if (command == 'tikmp3') return !json.data.audio ? client.reply(m.chat, global.status.fail, m) : client.sendAudio(m.chat, json.data.audio, false, m)
+		if (command == 'tikwm') return client.sendVideo(m.chat, json.data.videoWM, '', m)
 	} catch {
-		return m.reply(_func.status.error)
+		return client.reply(m.chat, global.status.error, m)
 	}},
 	error: false,
-	limit: true
+	cache: true,
+	location: __filename
 }
