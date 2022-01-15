@@ -54,7 +54,7 @@ module.exports = async (conn, m, _func, isOwner, isBlock, isAdmin, isBotAdmin) =
 	}
 	
 	// an example auto response
-	if (!m.fromMe && m.text.match(/(mksh|mksih|mkasih|makasih|thanks|thx|tq)/gi)) {
+	if (!m.fromMe && m.text.match(/(mksh|mksih|mkasih|makasih|thanks|thx|tq|tysm)/gi)) {
 		await conn.updatePresence(m.chat, Presence.composing)
 		conn.reply(m.chat, `*Ur Welcome. :)*`, m)
 	}
