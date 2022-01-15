@@ -3,7 +3,7 @@ exports.run = {
 	usage: ['swm'],
 	async: async (m, { conn, _func, text }) => {
 		await conn.updatePresence(m.chat, Presence.composing)
-		if (!text) return conn.reply(m.chat, `• *Example* : ${usedPrefix + command} wildan | izzudin`, m)
+		if (!text) return conn.reply(m.chat, `• *Example* : ${usedPrefix + command} Punya R | RenBot`, m)
 		if (!text.match(/[|]/gi)) {
 			x = text
 			y = global.db.setting.sk_author
